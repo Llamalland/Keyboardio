@@ -17,7 +17,7 @@
 // The Kaleidoscope core
 #include "Kaleidoscope.h"
 
-// let's fucking see, huh? Support for Schroedinger's cat
+// Support for Schroedinger's cat
 #include "Kaleidoscope-Qukeys.h"
 
 // Redial key
@@ -30,11 +30,14 @@
 #include "Kaleidoscope-OneShot.h"
 #include "Kaleidoscope-Escape-OneShot.h"
 
-// Dependencies for Redial, OneShot(etc.)
+// TapDancing umlauts
+#include "Kaleidoscope-TapDance.h"
+
+// Dependencies for a whole heap of shit
 #include "Kaleidoscope-Ranges.h"
 
 // Support for keys that move the mouse
-#include "Kaleidoscope-MouseKeys.h"
+//#include "Kaleidoscope-MouseKeys.h"
 
 // Support for macros
 #include "Kaleidoscope-Macros.h"
@@ -450,10 +453,10 @@ void setup() {
     &Macros,
 
     // Support for redial
-    &Redial,
+    &Redial
 
     // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
-    &MouseKeys
+    // &MouseKeys
   );
 
   //Qukeys Dictionaries
@@ -506,4 +509,3 @@ void setup() {
 void loop() {
   Kaleidoscope.loop();
 }
-
