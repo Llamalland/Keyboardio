@@ -1,4 +1,4 @@
-
+  
 // -*- mode: c++ -*-
 // Copyright 2016 Keyboardio, inc. <jesse@keyboard.io>
 // See "LICENSE" for license details
@@ -25,6 +25,8 @@
 
 // Flippity Flop, flips a key's shifted and unshifted outputs
 #include "Kaleidoscope-TopsyTurvy.h"
+
+#include "Kaleidoscope-Leader.h"
 
 // Oneshot stuff
 #include "Kaleidoscope-OneShot.h"
@@ -100,7 +102,6 @@
 
 enum { MACRO_VERSION_INFO,
        MACRO_ANY,
-       MACRO_FULLSTOP,
        MACRO_COMMA,
        MACRO_EXCLAIM,
        MACRO_QUESTION,
@@ -160,7 +161,7 @@ enum {
 
 */
 
-enum { NEROFIST, NUMPAD, FUNCTION, QWERTY }; // layers
+enum { TISDP, NUMPAD, FUNCTION, QWERTY }; // layers
 
 /* This comment temporarily turns off astyle's indent enforcement
      so we can make the keymaps actually resemble the physical key layout better
@@ -169,19 +170,19 @@ enum { NEROFIST, NUMPAD, FUNCTION, QWERTY }; // layers
 
 const Key keymaps[][ROWS][COLS] PROGMEM = {
 
-  [NEROFIST] = KEYMAP_STACKED
+  [TISDP] = KEYMAP_STACKED
   (Key_RightBracket, Key_1, Key_2, Key_3, Key_4, Key_5,     Key_Escape,
-   Key_LeftBracket,  Key_G, Key_U, Key_B, Key_F, Key_Quote, Key_RightAlt, 
+   Key_LeftBracket,  Key_G, Key_U, Key_F, Key_B, Key_Quote, Key_Enter, 
    LSHIFT(Key_9),    Key_T, Key_I, Key_S, Key_D, Key_P,
    LSHIFT(Key_0),    Key_Z, Key_Y, Key_X, Key_C, Key_V,     Key_Equals, 
-   M(MACRO_QUESTION), M(MACRO_EXCLAIM), Key_Spacebar, Key_Backspace, 
+   M(MACRO_EXCLAIM), M(MACRO_QUESTION), Key_Spacebar, Key_Backspace, 
    ShiftToLayer(NUMPAD),
 
-   Key_Escape,         Key_6, Key_7, Key_8,     Key_9,      Key_0, LSHIFT(Key_Tab),
-   LSHIFT(Key_Quote),  Key_M, Key_H, Key_O,     Key_Redial, Key_W, Key_Tab,
-                       Key_L, Key_N, Key_E,     Key_A,      Key_R, TOPSY(Semicolon),   
-   LSHIFT(Key_Equals), Key_Q, Key_J, Key_Slash, Key_Minus,  Key_K, M(MACRO_SWAP), 
-   Key_Delete, M(MACRO_PARAGRAPH), M(MACRO_FULLSTOP), M(MACRO_COMMA),
+   Key_Escape,         Key_6,     Key_7, Key_8,     Key_9,      Key_0, LSHIFT(Key_Tab),
+   LSHIFT(Key_Quote),  Key_Minus, Key_H, Key_O,     Key_Redial, Key_W, Key_Tab,
+                       Key_L,     Key_N, Key_E,     Key_A,      Key_R, TOPSY(Semicolon),   
+   LSHIFT(Key_Equals), Key_J,     Key_M, Key_Slash, Key_Q,      Key_K, M(MACRO_SWAP), 
+   Key_Delete, M(MACRO_PARAGRAPH), LEAD(0), M(MACRO_COMMA),
    ShiftToLayer(FUNCTION)),
 
 
@@ -221,9 +222,9 @@ const Key keymaps[][ROWS][COLS] PROGMEM = {
    Key_PageUp,   Key_A, Key_S, Key_D, Key_F, Key_G,
    Key_PageDown, Key_Z, Key_X, Key_C, Key_V, Key_B, Key_Escape,
    Key_LeftControl, Key_LeftShift, Key_Spacebar, Key_Backspace, 
-   ShiftToLayer(FUNCTION),
+   ShiftToLayer(NUMPAD),
 
-   M(MACRO_ANY),      Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(NEROFIST),
+   M(MACRO_ANY),      Key_6, Key_7, Key_8,     Key_9,         Key_0,         LockLayer(TISDP),
    Key_Enter,         Key_Y, Key_U, Key_I,     Key_O,         Key_P,         Key_Equals,
                       Key_H, Key_J, Key_K,     Key_L,         Key_Semicolon, Key_Quote,
    LockLayer(QWERTY), Key_N, Key_M, Key_Comma, Key_Period,    Key_Slash,     Key_Minus,
@@ -254,6 +255,117 @@ static const kaleidoscope::ShapeShifter::dictionary_t shape_shift_dictionary[] P
     prints out the firmware build information as virtual keystrokes
 */
 
+static void leaderFSA(uint8_t seq_index) {
+  Macros.type(PSTR(". A"));  
+}
+static void leaderFSB(uint8_t seq_index) {
+  Macros.type(PSTR(". B"));  
+}
+static void leaderFSC(uint8_t seq_index) {
+  Macros.type(PSTR(". C"));  
+}
+static void leaderFSD(uint8_t seq_index) {
+  Macros.type(PSTR(". D"));  
+}
+static void leaderFSE(uint8_t seq_index) {
+  Macros.type(PSTR(". E"));  
+}
+static void leaderFSF(uint8_t seq_index) {
+  Macros.type(PSTR(". F"));  
+}
+static void leaderFSG(uint8_t seq_index) {
+  Macros.type(PSTR(". G"));  
+}
+static void leaderFSH(uint8_t seq_index) {
+  Macros.type(PSTR(". H"));  
+}
+static void leaderFSI(uint8_t seq_index) {
+  Macros.type(PSTR(". I"));  
+}
+static void leaderFSJ(uint8_t seq_index) {
+  Macros.type(PSTR(". J"));  
+}
+static void leaderFSK(uint8_t seq_index) {
+  Macros.type(PSTR(". K"));  
+}
+static void leaderFSL(uint8_t seq_index) {
+  Macros.type(PSTR(". L"));  
+}
+static void leaderFSM(uint8_t seq_index) {
+  Macros.type(PSTR(". M"));  
+}
+static void leaderFSN(uint8_t seq_index) {
+  Macros.type(PSTR(". N"));  
+}
+static void leaderFSO(uint8_t seq_index) {
+  Macros.type(PSTR(". O"));  
+}
+static void leaderFSP(uint8_t seq_index) {
+  Macros.type(PSTR(". P"));  
+}
+static void leaderFSQ(uint8_t seq_index) {
+  Macros.type(PSTR(". Q"));  
+}
+static void leaderFSR(uint8_t seq_index) {
+  Macros.type(PSTR(". R"));  
+}
+static void leaderFSS(uint8_t seq_index) {
+  Macros.type(PSTR(". S"));  
+}
+static void leaderFST(uint8_t seq_index) {
+  Macros.type(PSTR(". T"));  
+}
+static void leaderFSU(uint8_t seq_index) {
+  Macros.type(PSTR(". U"));  
+}
+static void leaderFSV(uint8_t seq_index) {
+  Macros.type(PSTR(". V"));  
+}
+static void leaderFSW(uint8_t seq_index) {
+  Macros.type(PSTR(". W"));  
+}
+static void leaderFSX(uint8_t seq_index) {
+  Macros.type(PSTR(". X"));  
+}
+static void leaderFSY(uint8_t seq_index) {
+  Macros.type(PSTR(". Y"));  
+}
+static void leaderFSZ(uint8_t seq_index) {
+  Macros.type(PSTR(". Z"));  
+}
+
+static const kaleidoscope::Leader::dictionary_t leader_dictionary[] PROGMEM =
+LEADER_DICT({LEADER_SEQ(LEAD(0), Key_A), leaderFSA},
+            {LEADER_SEQ(LEAD(0), Key_A), leaderFSA},
+            {LEADER_SEQ(LEAD(0), Key_B), leaderFSB},
+            {LEADER_SEQ(LEAD(0), Key_C), leaderFSC},
+            {LEADER_SEQ(LEAD(0), Key_D), leaderFSD},
+            {LEADER_SEQ(LEAD(0), Key_E), leaderFSE},
+            {LEADER_SEQ(LEAD(0), Key_F), leaderFSF},
+            {LEADER_SEQ(LEAD(0), Key_G), leaderFSG},
+            {LEADER_SEQ(LEAD(0), Key_H), leaderFSH},
+            {LEADER_SEQ(LEAD(0), Key_I), leaderFSI},
+            {LEADER_SEQ(LEAD(0), Key_J), leaderFSJ},
+            {LEADER_SEQ(LEAD(0), Key_K), leaderFSK},
+            {LEADER_SEQ(LEAD(0), Key_L), leaderFSL},
+            {LEADER_SEQ(LEAD(0), Key_M), leaderFSM},
+            {LEADER_SEQ(LEAD(0), Key_N), leaderFSN},
+            {LEADER_SEQ(LEAD(0), Key_O), leaderFSO},
+            {LEADER_SEQ(LEAD(0), Key_P), leaderFSP},
+            {LEADER_SEQ(LEAD(0), Key_Q), leaderFSQ},
+            {LEADER_SEQ(LEAD(0), Key_R), leaderFSR},
+            {LEADER_SEQ(LEAD(0), Key_S), leaderFSS},
+            {LEADER_SEQ(LEAD(0), Key_T), leaderFST},
+            {LEADER_SEQ(LEAD(0), Key_U), leaderFSU},
+            {LEADER_SEQ(LEAD(0), Key_V), leaderFSV},
+            {LEADER_SEQ(LEAD(0), Key_W), leaderFSW},
+            {LEADER_SEQ(LEAD(0), Key_X), leaderFSX},
+            {LEADER_SEQ(LEAD(0), Key_Y), leaderFSY},
+            {LEADER_SEQ(LEAD(0), Key_Z), leaderFSZ});
+
+
+
+
 static void versionInfoMacro(uint8_t keyState) {
   if (keyToggledOn(keyState)) {
     Macros.type(PSTR("Keyboardio Model 01 - Kaleidoscope "));
@@ -278,27 +390,6 @@ static void anyKeyMacro(uint8_t keyState) {
     kaleidoscope::hid::pressKey(lastKey);
 }
 
-// my attempt at this thing. the "Key punctuation" bit didn't make sense but I have
-// tried other permutations in its place like Key_Period, Key Period etc., with the similar result
-
-const macro_t *fullStopMacro(Key punctuation) {
-  handleKeyswitchEvent(punctuation, UNKNOWN_KEYSWITCH_LOCATION, IS_PRESSED);
-  kaleidoscope::hid::sendKeyboardReport();
-  handleKeyswitchEvent(punctuation, UNKNOWN_KEYSWITCH_LOCATION, WAS_PRESSED);
-  kaleidoscope::hid::sendKeyboardReport();
-
-  handleKeyswitchEvent(Key_Spacebar, UNKNOWN_KEYSWITCH_LOCATION, IS_PRESSED);
-  kaleidoscope::hid::sendKeyboardReport();
-  handleKeyswitchEvent(Key_Spacebar, UNKNOWN_KEYSWITCH_LOCATION, WAS_PRESSED);
-  kaleidoscope::hid::sendKeyboardReport();
-
-  //  handleKeyswitchEvent(OSM(LeftShift), UNKNOWN_KEYSWITCH_LOCATION, IS_PRESSED);
-  //  handleKeyswitchEvent(OSM(LeftShift), UNKNOWN_KEYSWITCH_LOCATION, WAS_PRESSED);
-  OneShot.inject(OSM(LeftShift), IS_PRESSED);
-  OneShot.inject(OSM(LeftShift), WAS_PRESSED);
-
-  return MACRO_NONE;
-}
 
 /** macroAction dispatches keymap events that are tied to a macro
     to that macro. It takes two uint8_t parameters.
@@ -322,12 +413,6 @@ const macro_t *macroAction(uint8_t macroIndex, uint8_t keyState) {
     case MACRO_ANY:
       anyKeyMacro(keyState);
       break;
-
-    case MACRO_FULLSTOP:
-      if (keyToggledOn(keyState)) {
-        return fullStopMacro(Key_Period);
-      }
-      return MACRO_NONE;
     // use the below when you want something instead that works but no OSM(LeftShift) functionality
     //    return MACRODOWN(I(25),T(Period), T(Spacebar));
     //    break;
@@ -387,81 +472,81 @@ static kaleidoscope::LEDSolidColor solidPurple(127, 0, 255);
     Kaleidoscope and any plugins.
 */
 
+  // Next, tell Kaleidoscope which plugins you want to use.
+  // The order can be important. For example, LED effects are
+  // added in the order they're listed here.
+  KALEIDOSCOPE_INIT_PLUGINS(
+    // Schroedinger's cat
+    Qukeys,
+
+    // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
+    // BootGreetingEffect,
+    Leader,
+    // The hardware test mode, which can be invoked by tapping Prog, LED and the left Fn button at the same time. - ADD BACK IN BEFORE FINALLY FLASHING
+    // TestMode,
+
+    // Odo
+    ShapeShifter,
+
+    // Flippity floppity, swap shifted and unshifted output
+    TopsyTurvy,
+
+    // Support for OneShot for dem macros
+    OneShot,
+    EscapeOneShot,
+
+    // LEDControl provides support for other LED modes
+    LEDControl,
+
+    // We start with the LED effect that turns off all the LEDs.
+    LEDOff,
+
+    // The rainbow effect changes the color of all of the keyboard's keys at the same time
+    // running through all the colors of the rainbow.
+    LEDRainbowEffect,
+
+    // The rainbow wave effect lights up your keyboard with all the colors of a rainbow
+    // and slowly moves the rainbow across your keyboard
+    LEDRainbowWaveEffect,
+
+    // The chase effect follows the adventure of a blue pixel which chases a red pixel across
+    // your keyboard. Spoiler: the blue pixel never catches the red pixel
+    // LEDChaseEffect,
+
+    // These static effects turn your keyboard's LEDs a variety of colors
+    solidRed, solidOrange, solidYellow, solidGreen, solidBlue, solidIndigo, solidViolet, solidPurple,
+
+    // The breathe effect slowly pulses all of the LEDs on your keyboard
+    LEDBreatheEffect,
+
+    // The AlphaSquare effect prints each character you type, using your
+    // keyboard's LEDs as a display
+    // AlphaSquareEffect,
+
+    // The stalker effect lights up the keys you've pressed recently
+    StalkerEffect,
+
+    // The numpad plugin is responsible for lighting up the 'numpad' mode
+    // with a custom LED effect
+    NumPad,
+
+    // The macros plugin adds support for macros
+    Macros,
+
+    // Support for redial
+    Redial
+
+    // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
+    // MouseKeys
+  );
+
 void setup() {
   // First, call Kaleidoscope's internal setup function
   Kaleidoscope.setup();
 
-  // Next, tell Kaleidoscope which plugins you want to use.
-  // The order can be important. For example, LED effects are
-  // added in the order they're listed here.
-  Kaleidoscope.use(
-    // Schroedinger's cat
-    &Qukeys,
-
-    // The boot greeting effect pulses the LED button for 10 seconds after the keyboard is first connected
-    //&BootGreetingEffect,
-
-    // The hardware test mode, which can be invoked by tapping Prog, LED and the left Fn button at the same time. - ADD BACK IN BEFORE FINALLY FLASHING
-    //&TestMode,
-
-    // Odo
-    &ShapeShifter,
-
-    // Flippity floppity, swap shifted and unshifted output
-    &TopsyTurvy,
-
-    // Support for OneShot for dem macros
-    &OneShot,
-    &EscapeOneShot,
-
-    // LEDControl provides support for other LED modes
-    &LEDControl,
-
-    // We start with the LED effect that turns off all the LEDs.
-    &LEDOff,
-
-    // The rainbow effect changes the color of all of the keyboard's keys at the same time
-    // running through all the colors of the rainbow.
-    &LEDRainbowEffect,
-
-    // The rainbow wave effect lights up your keyboard with all the colors of a rainbow
-    // and slowly moves the rainbow across your keyboard
-    &LEDRainbowWaveEffect,
-
-    // The chase effect follows the adventure of a blue pixel which chases a red pixel across
-    // your keyboard. Spoiler: the blue pixel never catches the red pixel
-    //&LEDChaseEffect,
-
-    // These static effects turn your keyboard's LEDs a variety of colors
-    &solidRed, &solidOrange, &solidYellow, &solidGreen, &solidBlue, &solidIndigo, &solidViolet, &solidPurple,
-
-    // The breathe effect slowly pulses all of the LEDs on your keyboard
-    &LEDBreatheEffect,
-
-    // The AlphaSquare effect prints each character you type, using your
-    // keyboard's LEDs as a display
-    // &AlphaSquareEffect,
-
-    // The stalker effect lights up the keys you've pressed recently
-    &StalkerEffect,
-
-    // The numpad plugin is responsible for lighting up the 'numpad' mode
-    // with a custom LED effect
-    &NumPad,
-
-    // The macros plugin adds support for macros
-    &Macros,
-
-    // Support for redial
-    &Redial
-
-    // The MouseKeys plugin lets you add keys to your keymap which move the mouse.
-    // &MouseKeys
-  );
-
   //Qukeys Dictionaries
   QUKEYS(
-    kaleidoscope::Qukey(0, 1, 8, Key_RightAlt),     //.(Macro) Alt
+//    kaleidoscope::Qukey(0, 1, 8, Key_RightAlt),     //Full Stop leader, Alt
     kaleidoscope::Qukey(0, 0, 8, Key_RightShift),   //,(Macro) Shift
     kaleidoscope::Qukey(0, 1, 7, Key_LeftShift),    //?(Macro) Shift
     kaleidoscope::Qukey(0, 0, 7, Key_LeftControl),  //!(Macro) Ctrl
@@ -479,6 +564,8 @@ void setup() {
   // While we hope to improve this in the future, the NumPad plugin
   // needs to be explicitly told which keymap layer is your numpad layer
   NumPad.numPadLayer = NUMPAD;
+
+  Leader.dictionary = leader_dictionary;
 
   // We configure the AlphaSquare effect to use GREEN letters
   //AlphaSquare.color = { 0, 255, 0 };
